@@ -1,72 +1,71 @@
 # Telegram Task Bot
 
-Bot para Telegram que gerencia uma lista de tarefas por usuario, com
-persistencia em banco de dados SQLite — cada pessoa que conversa com o
-bot tem sua propria lista, isolada das demais.
+Fiz esse bot pra resolver um problema bem comum: lembrar das tarefas do
+dia sem precisar abrir outro app. É só chamar o bot no Telegram e
+gerenciar tudo direto na conversa.
 
-## Funcionalidades
+Cada pessoa que fala com o bot tem sua própria lista de tarefas, salva
+num banco SQLite — ninguém vê a lista de outra pessoa.
+
+## Comandos
 
 | Comando | O que faz |
 |---|---|
 | `/start` | Mensagem de boas-vindas |
 | `/add <tarefa>` | Adiciona uma nova tarefa |
 | `/list` | Lista as tarefas pendentes |
-| `/done <id>` | Marca uma tarefa como concluida |
+| `/done <id>` | Marca uma tarefa como concluída |
 | `/remove <id>` | Remove uma tarefa |
-| `/help` | Mostra a lista de comandos |
+| `/help` | Mostra os comandos disponíveis |
 
 ## Como rodar
 
-1. Crie um bot no Telegram falando com o [@BotFather](https://t.me/BotFather)
-   e copie o token gerado.
+1. Cria um bot com o [@BotFather](https://t.me/BotFather) no Telegram e
+   copia o token que ele te dá.
 
-2. Instale as dependencias:
+2. Instala as dependências:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Copie o arquivo de exemplo e cole seu token:
+3. Copia o `.env.example` pra `.env` e cola seu token lá dentro:
    ```bash
    cp .env.example .env
    ```
-   Edite o `.env` e substitua pelo token real.
 
-4. Rode o bot:
+4. Roda:
    ```bash
    python src/bot.py
    ```
 
-5. Abra uma conversa com seu bot no Telegram e mande `/start`.
+5. Abre uma conversa com o bot no Telegram e manda `/start`.
 
 ## Estrutura
 
 ```
 telegram-bot-python/
 ├── src/
-│   ├── bot.py          # comandos e integracao com a API do Telegram
-│   └── database.py     # camada de persistencia (SQLite)
-├── .env.example         # modelo do arquivo de variaveis de ambiente
+│   ├── bot.py          # comandos e integração com a API do Telegram
+│   └── database.py     # tudo relacionado ao banco (SQLite)
+├── .env.example
 ├── .gitignore
 └── requirements.txt
 ```
 
-## Tecnologias
+## Tecnologias usadas
 
-- **python-telegram-bot** — integracao com a API do Telegram (assincrona)
-- **sqlite3** (biblioteca padrao do Python) — persistencia das tarefas
-- **python-dotenv** — carrega o token do bot a partir do `.env`, mantendo
-  a credencial fora do codigo-fonte
+- **python-telegram-bot** pra falar com a API do Telegram
+- **SQLite** pra guardar as tarefas (sem precisar de servidor de banco externo)
+- **python-dotenv** pra manter o token fora do código
 
-## Decisões de design
+## Por que separei o token num `.env`
 
-- Cada tarefa e associada ao `user_id` do Telegram, garantindo que um
-  usuario nunca veja ou altere as tarefas de outro.
-- O token do bot fica em uma variavel de ambiente (`.env`), nunca
-  hardcoded no codigo — o arquivo `.env` esta no `.gitignore` por
-  seguranca.
+Token de bot é tipo senha — se alguém pegar, consegue controlar o bot.
+Por isso ele fica numa variável de ambiente, e o arquivo `.env` está no
+`.gitignore`, então nunca vai parar no GitHub por acidente.
 
-## Possiveis evoluções
+## Próximas ideias
 
-- Lembretes agendados (ex: avisar a tarefa em um horario definido)
-- Categorias/prioridades para as tarefas
-- Edicao da descricao de uma tarefa existente
+- Lembretes agendados (o bot te avisa num horário marcado)
+- Prioridade nas tarefas
+- Editar uma tarefa já criada, sem precisar apagar e adicionar de novo
