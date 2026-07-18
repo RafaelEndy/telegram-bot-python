@@ -1,11 +1,8 @@
 # Telegram Task Bot
 
-Fiz esse bot pra resolver um problema bem comum: lembrar das tarefas do
-dia sem precisar abrir outro app. É só chamar o bot no Telegram e
-gerenciar tudo direto na conversa.
+Este é um bot para o Telegram desenvolvido para o gerenciamento de tarefas direto pelo chat.
 
-Cada pessoa que fala com o bot tem sua própria lista de tarefas, salva
-num banco SQLite — ninguém vê a lista de outra pessoa.
+O bot suporta múltiplos usuários, utilizando um banco de dados SQLite para garantir que cada pessoa acesse e gerencie apenas a sua própria lista de forma isolada.
 
 ## Comandos
 
