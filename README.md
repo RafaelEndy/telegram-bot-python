@@ -1,68 +1,68 @@
 # Telegram Task Bot
 
-Este é um bot para o Telegram desenvolvido para o gerenciamento de tarefas direto pelo chat.
+This is a Telegram bot built to manage tasks directly from the chat.
 
-O bot suporta múltiplos usuários, utilizando um banco de dados SQLite para garantir que cada pessoa acesse e gerencie apenas a sua própria lista de forma isolada.
+The bot supports multiple users, using a SQLite database to make sure each person can only access and manage their own list, kept fully isolated from everyone else's.
 
-## Comandos
+## Commands
 
-| Comando | O que faz |
+| Command | What it does |
 |---|---|
-| `/start` | Mensagem de boas-vindas |
-| `/add <tarefa>` | Adiciona uma nova tarefa |
-| `/list` | Lista as tarefas pendentes |
-| `/done <id>` | Marca uma tarefa como concluída |
-| `/remove <id>` | Remove uma tarefa |
-| `/help` | Mostra os comandos disponíveis |
+| `/start` | Welcome message |
+| `/add <task>` | Adds a new task |
+| `/list` | Lists pending tasks |
+| `/done <id>` | Marks a task as completed |
+| `/remove <id>` | Removes a task |
+| `/help` | Shows the available commands |
 
-## Como rodar
+## How to run
 
-1. Cria um bot com o [@BotFather](https://t.me/BotFather) no Telegram e
-   copia o token que ele te dá.
+1. Create a bot with [@BotFather](https://t.me/BotFather) on Telegram and
+   copy the token it gives you.
 
-2. Instala as dependências:
+2. Install the dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Copia o `.env.example` pra `.env` e cola seu token lá dentro:
+3. Copy `.env.example` to `.env` and paste your token in there:
    ```bash
    cp .env.example .env
    ```
 
-4. Roda:
+4. Run:
    ```bash
    python src/bot.py
    ```
 
-5. Abre uma conversa com o bot no Telegram e manda `/start`.
+5. Open a chat with the bot on Telegram and send `/start`.
 
-## Estrutura
+## Structure
 
 ```
 telegram-bot-python/
 ├── src/
-│   ├── bot.py          # comandos e integração com a API do Telegram
-│   └── database.py     # tudo relacionado ao banco (SQLite)
+│   ├── bot.py          # commands and integration with the Telegram API
+│   └── database.py     # everything related to the database (SQLite)
 ├── .env.example
 ├── .gitignore
 └── requirements.txt
 ```
 
-## Tecnologias usadas
+## Tech stack
 
-- **python-telegram-bot** pra falar com a API do Telegram
-- **SQLite** pra guardar as tarefas (sem precisar de servidor de banco externo)
-- **python-dotenv** pra manter o token fora do código
+- **python-telegram-bot** to talk to the Telegram API
+- **SQLite** to store the tasks (no external database server needed)
+- **python-dotenv** to keep the token out of the source code
 
-## Por que separei o token num `.env`
+## Why the token is kept in a `.env` file
 
-Token de bot é tipo senha — se alguém pegar, consegue controlar o bot.
-Por isso ele fica numa variável de ambiente, e o arquivo `.env` está no
-`.gitignore`, então nunca vai parar no GitHub por acidente.
+A bot token is like a password — anyone who gets it can control the bot.
+That's why it lives in an environment variable, and the `.env` file is
+listed in `.gitignore`, so it never accidentally ends up on GitHub.
 
-## Próximas ideias
+## Next ideas
 
-- Lembretes agendados (o bot te avisa num horário marcado)
-- Prioridade nas tarefas
-- Editar uma tarefa já criada, sem precisar apagar e adicionar de novo
+- Scheduled reminders (the bot notifies you at a set time)
+- Task priority levels
+- Editing an existing task, instead of having to delete and re-add it
